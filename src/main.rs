@@ -7,6 +7,11 @@ fn main() {
     let lines = std::io::stdin().lines();
 
     for l in lines {
+        let text = l.expect("read stdin");
+
+        if is_match(&key.as_bytes(), text.as_bytes()) {
+            println!("{text}");
+        }
     }
 }
 
