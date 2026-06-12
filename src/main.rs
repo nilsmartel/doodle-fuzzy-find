@@ -64,4 +64,9 @@ mod tests {
         assert!(is_match(&[b'1', b'3', b'5'], &[b'1', b'2', b'3', b'4', b'5']));
     }
 
+    #[test]
+    fn test_multiple_chars_no_match() {
+        assert!(!is_match(&[b'a', b'b', b'c'], &[b'a', b'b', b'd']));
+        assert!(!is_match(&[b'x', b'y'], &[b'a', b'x', b'b']));
+    }
 }
