@@ -58,4 +58,10 @@ mod tests {
         assert!(is_match(&[b'a', b'b', b'c'], &[b'a', b'b', b'c', b'd']));
     }
 
+    #[test]
+    fn test_multiple_chars_match_with_gaps() {
+        assert!(is_match(&[b'a', b'c', b'e'], &[b'a', b'b', b'c', b'd', b'e']));
+        assert!(is_match(&[b'1', b'3', b'5'], &[b'1', b'2', b'3', b'4', b'5']));
+    }
+
 }
