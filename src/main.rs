@@ -46,4 +46,10 @@ mod tests {
         assert!(is_match(&[b'a'], &[b'a', b'b', b'c']));
         assert!(is_match(&[b'x'], &[b'x']));
     }
+
+    #[test]
+    fn test_single_char_no_match() {
+        assert!(!is_match(&[b'a'], &[b'b', b'c', b'd']));
+        assert!(!is_match(&[b'x'], &[]));
+    }
 }
