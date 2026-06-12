@@ -40,4 +40,10 @@ mod tests {
         assert!(is_match(&[], &[1, 2, 3]));
         assert!(is_match(&[], &[]));
     }
+
+    #[test]
+    fn test_single_char_match() {
+        assert!(is_match(&[b'a'], &[b'a', b'b', b'c']));
+        assert!(is_match(&[b'x'], &[b'x']));
+    }
 }
