@@ -75,4 +75,12 @@ mod tests {
         assert!(is_match(&[b'c', b'd'], &[b'a', b'b', b'c', b'd']));
         assert!(is_match(&[b'z'], &[b'a', b'b', b'c', b'z']));
     }
+    #[test]
+    fn test_overlapping_matches() {
+        // Should match first 'a' with key[0], then remaining key "aa" with text "aa"
+        assert!(is_match(&[b'a', b'a'], &[b'a', b'a', b'a']));
+
+        // Should match first 'a' at position 0, then second 'a' at position 2
+        assert!(is_match(&[b'a', b'a'], &[b'a', b'b', b'a']));
+    }
 }
