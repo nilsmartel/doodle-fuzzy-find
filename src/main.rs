@@ -52,4 +52,10 @@ mod tests {
         assert!(!is_match(&[b'a'], &[b'b', b'c', b'd']));
         assert!(!is_match(&[b'x'], &[]));
     }
+
+    #[test]
+    fn test_multiple_chars_match_sequential() {
+        assert!(is_match(&[b'a', b'b', b'c'], &[b'a', b'b', b'c', b'd']));
+    }
+
 }
