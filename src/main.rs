@@ -96,4 +96,10 @@ mod tests {
         // Should match first 'a' at position 0, then second 'a' at position 2
         assert!(is_match(&[b'a', b'a'], &[b'a', b'b', b'a']));
     }
+
+    #[test]
+    fn test_no_match_when_text_shorter() {
+        assert!(!is_match(&[b'a', b'b', b'c'], &[b'a', b'b']));
+        assert!(!is_match(&[b'x', b'y'], &[b'x']));
+    }
 }
