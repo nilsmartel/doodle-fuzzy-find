@@ -108,4 +108,19 @@ mod tests {
         assert!(!is_match(&[b'a'], &[]));
         assert!(!is_match(&[b'1', b'2'], &[]));
     }
+
+    #[test]
+    fn test_match_with_various_byte_values() {
+        // Null byte
+        assert!(is_match(&[0], &[0, 1, 2]));
+
+        // Special characters
+        assert!(is_match(&[b'\n', b'\t'], &[b'\n', b' ', b'\t']));
+
+        // High ASCII values
+        assert!(is_match(&[255], &[254, 255]));
+
+        // Mix of different bytes
+        assert!(is_match(&[b'A', 0, b'Z'], &[b'A', b'B', 0, b'Z']));
+    }
 }
