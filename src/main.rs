@@ -138,4 +138,27 @@ mod tests {
         let incomplete_text = &text[1..];
         assert!(!is_match(&key, incomplete_text));
     }
+
+    #[test]
+    fn test_match_finds_earliest_positions() {
+        // Key: 'a', 'b'
+        // Text: 'a', 'x', 'a', 'b'
+        // Should match 'a' at pos 0, then 'b' at pos 3
+        assert!(is_match(&[b'a', b'b'], &[b'a', b'x', b'a', b'b']));
+
+        // Should match even though there's an earlier 'b' before the second 'a'
+        assert!(is_match(&[b'a', b'b'], &[b'a', b'b', b'a', b'b']));
+    }
+
+    #[test]
+    fn test_no_match_when_characters_out_of_order() {
+        assert!(!is_match(&[b'a', b'b'], &[b'b', b'a']));
+        assert!(!is_match(&[b'1', b'2', b'3'], &[b'3', b'2', b'1']));
+    }
+
+    #[test]
+    fn test_key_is_subsequence_not_substring() {
+        // Key is a subsequence, not a contiguous substring
+        assert!(is_match(&[b'a', b'c', b'e'], &[b'a', b'b', b'c', b'd', b'e']));
+    }
 }
