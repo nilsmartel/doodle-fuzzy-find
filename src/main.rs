@@ -30,3 +30,14 @@ fn is_match(key: &[u8], text: &[u8]) -> bool {
         false
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_empty_key_returns_true() {
+        assert!(is_match(&[], &[1, 2, 3]));
+        assert!(is_match(&[], &[]));
+    }
+}
