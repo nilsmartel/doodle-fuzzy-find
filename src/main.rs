@@ -102,4 +102,10 @@ mod tests {
         assert!(!is_match(&[b'a', b'b', b'c'], &[b'a', b'b']));
         assert!(!is_match(&[b'x', b'y'], &[b'x']));
     }
+
+    #[test]
+    fn test_match_with_empty_text_and_nonempty_key() {
+        assert!(!is_match(&[b'a'], &[]));
+        assert!(!is_match(&[b'1', b'2'], &[]));
+    }
 }
