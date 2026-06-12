@@ -75,6 +75,19 @@ mod tests {
         assert!(is_match(&[b'c', b'd'], &[b'a', b'b', b'c', b'd']));
         assert!(is_match(&[b'z'], &[b'a', b'b', b'c', b'z']));
     }
+
+    #[test]
+    fn test_duplicate_characters_in_key() {
+        assert!(is_match(&[b'a', b'a', b'a'], &[b'a', b'a', b'a']));
+        assert!(is_match(&[b'a', b'a', b'a'], &[b'a', b'b', b'a', b'c', b'a']));
+    }
+
+    #[test]
+    fn test_duplicate_characters_in_text() {
+        assert!(is_match(&[b'a', b'b'], &[b'a', b'a', b'b']));
+        assert!(is_match(&[b'b', b'a'], &[b'b', b'b', b'a']));
+    }
+
     #[test]
     fn test_overlapping_matches() {
         // Should match first 'a' with key[0], then remaining key "aa" with text "aa"
