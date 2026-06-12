@@ -69,4 +69,10 @@ mod tests {
         assert!(!is_match(&[b'a', b'b', b'c'], &[b'a', b'b', b'd']));
         assert!(!is_match(&[b'x', b'y'], &[b'a', b'x', b'b']));
     }
+
+    #[test]
+    fn test_match_at_end_of_text() {
+        assert!(is_match(&[b'c', b'd'], &[b'a', b'b', b'c', b'd']));
+        assert!(is_match(&[b'z'], &[b'a', b'b', b'c', b'z']));
+    }
 }
