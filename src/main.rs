@@ -15,7 +15,11 @@ fn main() {
     }
 }
 
-
+/// Determines whether `key` is a subsequence of `text`.
+///
+/// This function checks if all elements of `key` appear in `text` in the same order,
+/// but not necessarily consecutively. An empty key is considered to match any text
+/// (including empty text).
 fn is_match(key: &[u8], text: &[u8]) -> bool {
     if key.is_empty() {
         return true;
