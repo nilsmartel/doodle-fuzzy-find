@@ -9,4 +9,19 @@ fn main() {
     for l in lines {
     }
 }
+
+
+fn is_match(key: &[u8], text: &[u8]) -> bool {
+    if key.is_empty() {
+        return true;
+    }
+
+    let token = key[0];
+    let key = &key[1..];
+
+    if let Some(index) = text.iter().position(|elem| *elem == token) {
+        is_match(key, &text[index..])
+    } else {
+        false
+    }
 }
