@@ -123,4 +123,19 @@ mod tests {
         // Mix of different bytes
         assert!(is_match(&[b'A', 0, b'Z'], &[b'A', b'B', 0, b'Z']));
     }
+
+    #[test]
+    fn test_long_sequences() {
+        let key: Vec<u8> = (0..100).map(|i| i as u8).collect();
+        let text: Vec<u8> = (0..200).map(|i| i as u8).collect();
+        assert!(is_match(&key, &text));
+
+        // Should fail if text doesn't contain all key elements in order
+        let mut incomplete_text = text.clone();
+        incomplete_text[50] = 200; // Change one byte that should be in key
+        // This might still match if the changed byte wasn't needed for the sequence
+        // Let's make a more reliable failure case: remove the first element
+        let incomplete_text = &text[1..];
+        assert!(!is_match(&key, incomplete_text));
+    }
 }
